@@ -1,4 +1,4 @@
-# flutter_rpn_calculator
+# Flutter RPN Calculator
 
 RPN calculator with Flutter
 
