@@ -4,6 +4,11 @@ import 'package:flutter_rpn_calculator/key-symbol.dart';
 
 abstract class Keys {
 
+  static KeySymbol square = const KeySymbol('x^2');
+  static KeySymbol cube = const KeySymbol('x^3');
+  static KeySymbol sqrt = const KeySymbol('sqrt');
+  static KeySymbol pi = const KeySymbol('pi');
+
   static KeySymbol clear = const KeySymbol('C');
   static KeySymbol sign = const KeySymbol('±');
   static KeySymbol percent = const KeySymbol('%');
@@ -55,7 +60,7 @@ class CalculatorKey extends StatelessWidget {
     return Container(
       width: (symbol == Keys.zero) ? (size * 2) : size,
       padding: EdgeInsets.all(2),
-      height: size,
+      height: getButtonHeight(symbol, size),
       child: RaisedButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         color: color,
@@ -64,5 +69,11 @@ class CalculatorKey extends StatelessWidget {
         onPressed: () => _fire(this),
       ),
     );
+  }
+
+  // shorten the scientific buttons
+  static double getButtonHeight(KeySymbol symbol, double size) {
+    if (symbol == Keys.square || symbol == Keys.cube || symbol == Keys.sqrt || symbol == Keys.pi) return size / 2;
+    else return size;
   }
 }

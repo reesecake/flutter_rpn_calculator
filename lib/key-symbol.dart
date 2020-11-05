@@ -7,7 +7,8 @@ class KeySymbol {
   const KeySymbol(this.value);
   final String value;
 
-  static List<KeySymbol> _functions = [ Keys.clear, Keys.sign, Keys.percent, Keys.decimal ];
+  static List<KeySymbol> _functions = [ Keys.square, Keys.cube, Keys.sqrt, Keys.pi,
+    Keys.clear, Keys.sign, Keys.percent, Keys.decimal ];
   static List<KeySymbol> _operators = [ Keys.divide, Keys.multiply, Keys.subtract, Keys.add, Keys.equals ];
 
   @override

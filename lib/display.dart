@@ -20,7 +20,8 @@ class Display extends StatelessWidget {
         .copyWith(color: Colors.white, fontWeight: FontWeight.w200);
 
     return Container(
-      padding: EdgeInsets.only(top: _margin, bottom: _margin),
+      // add a bottom: _margin here for padding below display
+      padding: EdgeInsets.only(top: _margin, ),
       constraints: BoxConstraints.expand(height: height),
       child: Container(
         padding: EdgeInsets.fromLTRB(32, 32, 32, 32),

@@ -10,6 +10,14 @@ class KeyPad extends StatelessWidget {
       children: [
         Row(
           children: <Widget>[
+            CalculatorKey(symbol: Keys.square),
+            CalculatorKey(symbol: Keys.cube),
+            CalculatorKey(symbol: Keys.sqrt),
+            CalculatorKey(symbol: Keys.pi)
+          ],
+        ),
+        Row(
+          children: <Widget>[
             CalculatorKey(symbol: Keys.clear),
             CalculatorKey(symbol: Keys.sign),
             CalculatorKey(symbol: Keys.percent),

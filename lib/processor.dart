@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter_rpn_calculator/calculator-key.dart';
 import 'package:flutter_rpn_calculator/key-controller.dart';
 import 'package:flutter_rpn_calculator/key-symbol.dart';
@@ -43,10 +44,15 @@ abstract class Processor {
 
   static void handleFunction(CalculatorKey key) {
 
-    if (key.symbol != Keys.decimal && _valA == '0') return;
+    if (key.symbol != Keys.decimal && key.symbol != Keys.pi && _valA == '0') return;
     if (_result != null) { _condense(); }
 
     Map<KeySymbol, dynamic> table = {
+      Keys.square: () => _square(),
+      Keys.cube: () => _cube(),
+      Keys.sqrt: () => _sqrt(),
+      Keys.pi: () => _pi(),
+
       Keys.clear: () => _clear(),
       Keys.sign: () => _sign(),
       Keys.percent: () => _percent(),
@@ -98,6 +104,35 @@ abstract class Processor {
     else if (_valA != '0' && !_valA.contains('.')) { _valA = _valA + '.'; }
     else if (_valA == '0' && !_valA.contains('.')) { _valA = '0.'; }
     else { _valB = '0.'; }
+  }
+
+  // helper function for _square()
+  static String calcSquare(String x) => (pow(double.parse(x), 2)).toString();
+
+  static void _square() {
+    if (_valB != '0') { _valB = calcSquare(_valB); }
+    else if (_valA != '0') { _valA = calcSquare(_valA); }
+  }
+
+  // helper function for _cube()
+  static String calcCube(String x) => (pow(double.parse(x), 3)).toString();
+
+  static void _cube() {
+    if (_valB != '0') { _valB = calcCube(_valB); }
+    else if (_valA != '0') { _valA = calcCube(_valA); }
+  }
+
+  // helper function for _sqrt()
+  static String calcSQRT(String x) => (pow(double.parse(x), 0.5)).toString();
+
+  static void _sqrt() {
+    if (_valB != '0') { _valB = calcSQRT(_valB); }
+    else if (_valA != '0') { _valA = calcSQRT(_valA); }
+  }
+
+  static void _pi() {
+    if (_valA != '0') { _valB = pi.toString().substring(0, 5); }
+    else { _valA = pi.toString().substring(0, 5); }
   }
 
   static void _calculate() {
