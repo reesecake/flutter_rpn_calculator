@@ -43,7 +43,7 @@ abstract class Processor {
 
   static void handleFunction(CalculatorKey key) {
 
-    if (_valA == '0') return;
+    if (key.symbol != Keys.decimal && _valA == '0') return;
     if (_result != null) { _condense(); }
 
     Map<KeySymbol, dynamic> table = {
@@ -96,6 +96,8 @@ abstract class Processor {
   static void _decimal() {
     if (_valB != '0' && !_valB.contains('.')) { _valB = _valB + '.'; }
     else if (_valA != '0' && !_valA.contains('.')) { _valA = _valA + '.'; }
+    else if (_valA == '0' && !_valA.contains('.')) { _valA = '0.'; }
+    else { _valB = '0.'; }
   }
 
   static void _calculate() {
